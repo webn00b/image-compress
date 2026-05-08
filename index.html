@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- TODO: replace https://your-domain.example with your real domain in OG/Twitter/canonical/sitemap/manifest -->
+    <title>Image Compress — Free online image compressor (PNG, JPEG, WebP, AVIF, HEIC)</title>
+    <meta
+      name="description"
+      content="Compress images right in your browser. Batch process JPEG, PNG, WebP, AVIF, and HEIC with quality control, resize, and target file size. 100% private — files never leave your device."
+    />
+    <meta
+      name="keywords"
+      content="image compression, compress images online, compress png, compress jpeg, compress webp, compress avif, heic to jpeg, bulk image compression, private image compressor, browser image compression"
+    />
+    <meta name="author" content="Image Compress" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://your-domain.example/" />
+
+    <meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Image Compress" />
+    <meta property="og:title" content="Image Compress — Free online image compressor" />
+    <meta
+      property="og:description"
+      content="Compress JPEG, PNG, WebP, AVIF, and HEIC right in your browser. Batch processing, resize, target file size. Files never leave your device."
+    />
+    <meta property="og:url" content="https://your-domain.example/" />
+    <meta property="og:image" content="https://your-domain.example/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Image Compress — Free online image compressor" />
+    <meta
+      name="twitter:description"
+      content="Compress JPEG, PNG, WebP, AVIF, and HEIC right in your browser. Batch processing, resize, target file size. Files never leave your device."
+    />
+    <meta name="twitter:image" content="https://your-domain.example/og-image.png" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- JSON-LD: WebApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image Compress",
+        "alternateName": "Image Compressor",
+        "url": "https://your-domain.example/",
+        "description": "Free, private image compressor that runs entirely in your browser. Supports JPEG, PNG, WebP, AVIF and HEIC with batch processing, resize, and target file size.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any (browser-based)",
+        "browserRequirements": "Requires modern browser with WebAssembly support",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Batch compression of multiple images",
+          "Output formats: JPEG, WebP, AVIF, PNG",
+          "Quality slider with target file size",
+          "Lanczos-quality resize (max long side or scale factor)",
+          "PNG palette quantization (lossy palette PNG)",
+          "Before/after comparison slider",
+          "ZIP download of all compressed files",
+          "Light and dark themes",
+          "All processing happens locally — no upload"
+        ],
+        "permissions": "no upload, all processing client-side"
+      }
+    </script>
+
+    <!-- JSON-LD: FAQ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are my images uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Image Compress runs entirely in your browser using WebAssembly. Files never leave your device — there is no server-side processing and no upload."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which formats are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Input: JPEG, PNG, WebP, AVIF, and HEIC/HEIF. Output: JPEG, WebP, AVIF, and PNG."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between WebP and AVIF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AVIF typically produces 20–40% smaller files than WebP at the same visual quality, but encoding is slower. WebP is faster and has near-universal browser support since 2020."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why did my PNG get bigger after compression?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Some PNGs are already optimized (e.g. by oxipng or zopflipng) and use palette mode that re-encoding cannot easily match. Try the palette quantization option (Colors → 256/128/64), or switch to lossy WebP/AVIF for graphics."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. After the first load, all encoders are cached and the app continues to work without an internet connection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is metadata (EXIF) removed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Re-encoding always strips EXIF, GPS, and other metadata. Privacy by default."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Crawler-visible static content. Replaced by the Vue app on mount. -->
+      <main class="seo-fallback">
+        <header>
+          <h1>Image Compress — Free online image compressor</h1>
+          <p>
+            Compress JPEG, PNG, WebP, AVIF, and HEIC images right in your browser.
+            Batch processing, quality control, resize, and target file size — all
+            client-side. <strong>Files never leave your device.</strong>
+          </p>
+        </header>
+
+        <section>
+          <h2>Features</h2>
+          <ul>
+            <li>Batch compression — drop multiple files, process them in parallel.</li>
+            <li>Output formats: JPEG, WebP, AVIF, and PNG (with optional palette quantization).</li>
+            <li>Quality slider 1–100 and optional target file size in KB.</li>
+            <li>High-quality Lanczos resize via pica — pick max long side or scale factor (×1.5 to ×16).</li>
+            <li>Before / after comparison slider for every file.</li>
+            <li>Download each file or all of them as a ZIP archive.</li>
+            <li>Built-in presets: Web, Avatar, Thumbnail, Max quality.</li>
+            <li>Light and dark themes with system preference detection.</li>
+            <li>100% client-side: WebAssembly codecs from the Squoosh project run in Web Workers.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <ol>
+            <li>Drag and drop one or more images into the app, or click to choose files.</li>
+            <li>Pick a preset, or set the format, quality, resize, and other options manually.</li>
+            <li>Press <em>Compress</em>. The app decodes each file, optionally resizes it, and re-encodes with WebAssembly codecs in Web Workers.</li>
+            <li>Preview the before / after comparison and download the result.</li>
+          </ol>
+          <p>
+            Loading… If JavaScript is enabled, the interactive app will appear here in a moment.
+          </p>
+        </section>
+
+        <section>
+          <h2>Frequently asked questions</h2>
+          <h3>Are my images uploaded to a server?</h3>
+          <p>No. Everything runs in your browser via WebAssembly. There is no upload and no server-side processing.</p>
+          <h3>Which formats are supported?</h3>
+          <p>Input: JPEG, PNG, WebP, AVIF, and HEIC/HEIF. Output: JPEG, WebP, AVIF, and PNG.</p>
+          <h3>What is the difference between WebP and AVIF?</h3>
+          <p>AVIF typically produces 20–40% smaller files than WebP at similar quality, at the cost of slower encoding. WebP is faster and well-supported.</p>
+          <h3>Why did my PNG get bigger after compression?</h3>
+          <p>If the source PNG was already optimized (e.g. via oxipng or zopflipng) and uses a palette, naive re-encoding can grow the file. Try the palette quantization option, or switch to lossy WebP / AVIF for screenshots and graphics.</p>
+          <h3>Does it work offline?</h3>
+          <p>Yes — after the first visit the app and all encoders are cached.</p>
+          <h3>Is EXIF metadata removed?</h3>
+          <p>Yes. Re-encoding always strips EXIF, GPS, and other metadata.</p>
+        </section>
+
+        <noscript>
+          <p><strong>This app needs JavaScript to run.</strong> Please enable JavaScript in your browser settings.</p>
+        </noscript>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
