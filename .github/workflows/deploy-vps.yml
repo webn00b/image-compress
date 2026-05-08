@@ -47,10 +47,3 @@ jobs:
             -e "ssh -p ${{ secrets.VPS_PORT || 22 }} -i ~/.ssh/id_ed25519" \
             dist/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_PATH }}
-
-      - name: Reload web server (optional)
-        if: ${{ secrets.VPS_RELOAD_CMD != '' }}
-        run: |
-          ssh -p ${{ secrets.VPS_PORT || 22 }} -i ~/.ssh/id_ed25519 \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
-            "${{ secrets.VPS_RELOAD_CMD }}"
