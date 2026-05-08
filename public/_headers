@@ -1,0 +1,20 @@
+# Cloudflare Pages / Netlify _headers file.
+# Enables SharedArrayBuffer (required for multi-threaded AVIF encoder).
+# Without these headers AVIF still works, but only single-threaded (~3x slower).
+
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Long cache for hashed assets — Vite generates content-hashed filenames in /assets/
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Don't cache the entry HTML — it points at the latest hashed bundles
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate

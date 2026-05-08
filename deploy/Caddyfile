@@ -1,0 +1,47 @@
+# Caddy v2 config for Image Compress.
+# Caddy auto-provisions HTTPS via Let's Encrypt — no certbot needed.
+#
+# Install Caddy on Debian/Ubuntu:
+#   sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
+#   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+#   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+#   sudo apt update && sudo apt install caddy
+#
+# Place this file at /etc/caddy/Caddyfile (or include it from there).
+# Replace your-domain.example with your real domain. DNS A/AAAA must point at the VPS first.
+# Reload: sudo systemctl reload caddy
+
+your-domain.example {
+    root * /var/www/image-compress
+    file_server
+    encode zstd gzip
+
+    # Required for SharedArrayBuffer → multi-threaded AVIF encoder (~3× faster).
+    header {
+        Cross-Origin-Opener-Policy "same-origin"
+        Cross-Origin-Embedder-Policy "require-corp"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "geolocation=(), microphone=(), camera=()"
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    }
+
+    # Vite hashes asset filenames — cache them aggressively.
+    @assets path /assets/*
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+
+    # Don't cache the entry HTML or the manifest.
+    @nocache path /index.html / /manifest.json /robots.txt /sitemap.xml
+    header @nocache Cache-Control "public, max-age=0, must-revalidate"
+
+    # SPA fallback: any unknown route serves index.html (we have only one route, but harmless).
+    try_files {path} /index.html
+
+    # Logs (optional).
+    log {
+        output file /var/log/caddy/image-compress.log {
+            roll_size 10mb
+            roll_keep 5
+        }
+    }
+}
